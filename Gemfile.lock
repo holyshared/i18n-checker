@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    haml-i18n-checker (0.1.0)
+      haml_parser (~> 0.4)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    haml_parser (0.4.1)
+    rake (10.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.14)
+  haml-i18n-checker!
+  rake (~> 10.0)
+
+BUNDLED WITH
+   1.14.1
