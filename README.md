@@ -1,0 +1,1 @@
+# haml-i18n-checker
