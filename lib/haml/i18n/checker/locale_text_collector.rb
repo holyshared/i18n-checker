@@ -8,7 +8,7 @@ module Haml
         def collect(template)
           parser = HamlParser::Parser.new
           ast = parser.call(template)
-          collect_locale_texts(parser.call(template))
+          LocaleTexts.new(collect_locale_texts(parser.call(template)))
         end
 
         private
