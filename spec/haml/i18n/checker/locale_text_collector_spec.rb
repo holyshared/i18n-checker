@@ -5,7 +5,7 @@ describe Haml::I18n::Checker::LocaleTextCollector do
     let(:collector) { Haml::I18n::Checker::LocaleTextCollector.new }
     subject { collector.collect(haml_template) }
     it 'should be return locale text' do
-      expect(subject).to eql(['nested.title'])
+      expect(subject).to eq(['nested.title'])
     end
   end
 end
