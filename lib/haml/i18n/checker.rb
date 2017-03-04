@@ -1,9 +1,9 @@
 require "haml/i18n/checker/version"
+require "haml/i18n/checker/locale_text_collector"
 
 module Haml
   module I18n
     module Checker
-      # Your code goes here...
     end
   end
 end

@@ -10,7 +10,7 @@ end
 
 SimpleCov.start
 
-require 'html-i18n-checker'
+require 'haml/i18n/checker'
 
 if ENV['COVERALLS_REPO_TOKEN']
   require 'coveralls'
