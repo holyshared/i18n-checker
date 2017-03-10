@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'haml/i18n/checker/version'
+require 'i18n/checker/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "haml-i18n-checker"
-  spec.version       = Haml::I18n::Checker::VERSION
+  spec.name          = "i18n-checker"
+  spec.version       = I18n::Checker::VERSION
   spec.authors       = ["holyshared"]
   spec.email         = ["holy.shared.design@gmail.com"]
   spec.summary       = "i18n checker for haml"

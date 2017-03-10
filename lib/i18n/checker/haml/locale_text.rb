@@ -1,6 +1,6 @@
-module Haml
-  module I18n
-    module Checker
+module I18n
+  module Checker
+    module Haml
       class LocaleText
         attr_reader :file, :text, :line
 

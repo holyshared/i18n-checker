@@ -1,9 +1,9 @@
 require 'haml_parser'
 require 'haml_parser/parser'
 
-module Haml
-  module I18n
-    module Checker
+module I18n
+  module Checker
+    module Haml
       class LocaleTextCollector
         def collect(template_file)
           template = read_template_file(template_file)
@@ -34,7 +34,7 @@ module Haml
 
         def locale_text_from_script(script_node)
           return unless translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
-          Haml::I18n::Checker::LocaleText.new(
+          I18n::Checker::Haml::LocaleText.new(
             file: script_node.filename,
             line: script_node.lineno,
             text: translate_script[1]

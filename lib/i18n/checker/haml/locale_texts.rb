@@ -1,6 +1,6 @@
-module Haml
-  module I18n
-    module Checker
+module I18n
+  module Checker
+    module Haml
       class LocaleTexts
         include Enumerable
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    haml-i18n-checker (0.1.0)
+    i18n-checker (0.1.0)
       haml_parser (~> 0.4)
 
 GEM
@@ -53,11 +53,11 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.14)
   coveralls
-  haml-i18n-checker!
+  i18n-checker!
   rake (~> 10.0)
   rspec
   simplecov
   simplecov-console
 
 BUNDLED WITH
-   1.14.1
+   1.14.6

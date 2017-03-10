@@ -1,6 +1,6 @@
-describe Haml::I18n::Checker::LocaleTextCollector do
+describe I18n::Checker::Haml::LocaleTextCollector do
   describe '#collect' do
-    let(:collector) { Haml::I18n::Checker::LocaleTextCollector.new }
+    let(:collector) { I18n::Checker::Haml::LocaleTextCollector.new }
     context 'when has oneline_child element' do
       let(:haml_file) { 'spec/fixtures/oneline_child.haml' }
       subject { collector.collect(haml_file).first }
