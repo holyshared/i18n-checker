@@ -2,6 +2,11 @@ require "i18n/checker/version"
 require "i18n/checker/haml/locale_text"
 require "i18n/checker/haml/locale_texts"
 require "i18n/checker/haml/locale_text_collector"
+require "i18n/checker/locale/key_path"
+require "i18n/checker/locale/locale_file"
+require "i18n/checker/locale/locale_files"
+require "i18n/checker/detector/locale_text_not_found"
+require "i18n/checker/detector/locale_text_result"
 
 module I18n
   module Checker

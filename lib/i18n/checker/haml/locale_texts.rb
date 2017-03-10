@@ -16,6 +16,10 @@ module I18n
           @texts == other.to_a
         end
 
+        def detect(detector)
+          detector.detect(texts)
+        end
+
         private
 
         attr_reader :texts
