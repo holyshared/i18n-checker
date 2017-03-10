@@ -9,7 +9,7 @@ module Haml
         end
 
         def each(&block)
-          texts.each(block)
+          texts.each(&block)
         end
 
         def ==(other)
