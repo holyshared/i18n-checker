@@ -26,9 +26,13 @@ module Haml
         end
 
         def collect_locale_text(ast)
+          return locale_text_from_script(ast) if ast.kind_of?(HamlParser::Ast::Script)
           return unless ast.respond_to?(:oneline_child)
           return unless ast.oneline_child.kind_of?(HamlParser::Ast::Script)
-          script_node = ast.oneline_child
+          locale_text_from_script(ast.oneline_child)
+        end
+
+        def locale_text_from_script(script_node)
           return unless translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
           Haml::I18n::Checker::LocaleText.new(
             file: script_node.filename,
