@@ -1,6 +1,13 @@
-describe I18n::Checker::Reporter::Default do
+describe I18n::Checker::Reporter::DefaultReporter do
   describe '#report' do
-    let(:reporter) { I18n::Checker::Reporter::Default.new }
+    let(:logger) do
+      logger = Logger.new(STDOUT)
+      logger.formatter = proc {|severity, datetime, progname, message|
+        "#{message}\n"
+      }
+      logger
+    end
+    let(:reporter) { I18n::Checker::Reporter::DefaultReporter.new(logger: logger) }
     let(:english_locale) do
       english_locale = {}
       english_locale['en'] = {}
