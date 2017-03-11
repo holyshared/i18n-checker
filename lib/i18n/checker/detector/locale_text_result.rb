@@ -11,6 +11,10 @@ module I18n
           @locale_text.file
         end
 
+        def lang
+          @locale_file.lang
+        end
+
         def line
           @locale_text.line
         end
