@@ -10,6 +10,14 @@ module I18n
         def file_name
           @locale_text.file
         end
+
+        def line_of_file
+          @locale_text.line
+        end
+
+        def locale_text
+          @locale_text.text
+        end
       end
     end
   end
