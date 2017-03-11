@@ -17,8 +17,8 @@ Gem::Specification.new do |spec|
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
   else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
+    raise 'RubyGems 2.0 or newer is required to protect against ' \
+      'public gem pushes.'
   end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
@@ -26,11 +26,11 @@ Gem::Specification.new do |spec|
   end
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
-  spec.add_dependency "haml_parser", "~> 0.4"
-
-  spec.add_development_dependency "bundler", "~> 1.14"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.require_paths = ['lib']
+  spec.add_dependency 'haml_parser', '~> 0.4'
+  spec.add_dependency 'colorator', '~> 1.1.0'
+  spec.add_development_dependency 'bundler','~> 1.14'
+  spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'simplecov-console'

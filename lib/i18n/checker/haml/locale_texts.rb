@@ -12,8 +12,17 @@ module I18n
           texts.each(&block)
         end
 
+        def concat(texts)
+          @texts.concat(texts.to_a)
+          self
+        end
+
         def ==(other)
           @texts == other.to_a
+        end
+
+        def detect(detector)
+          detector.detect(texts)
         end
 
         private
