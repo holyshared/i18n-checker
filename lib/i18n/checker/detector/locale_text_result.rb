@@ -11,11 +11,11 @@ module I18n
           @locale_text.file
         end
 
-        def line_of_file
+        def line
           @locale_text.line
         end
 
-        def locale_text
+        def text
           @locale_text.text
         end
       end

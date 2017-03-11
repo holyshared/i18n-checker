@@ -7,7 +7,8 @@ module I18n
         end
 
         def detect(locale_texts)
-          locale_texts.map { |local_text| detect_not_found(local_text) }.compact.flatten
+          results = locale_texts.map { |local_text| detect_not_found(local_text) }
+          DetectedResult.new(results.compact.flatten)
         end
 
         private

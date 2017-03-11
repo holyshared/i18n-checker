@@ -4,10 +4,10 @@ module I18n
   module Checker
     module Reporter
       class DefaultReporter < DetectResultReporter
-        def report(results = [])
-          results.each do |result|
-            logger.info result.file_name.cyan
-            logger.info "  #{result.line_of_file}: #{result.locale_text}"
+        def report(result)
+          result.locale_texts.each do |locale_text|
+            logger.info locale_text.file_name.cyan
+            logger.info "  line: #{locale_text.line} - #{locale_text.text}"
           end
         end
       end
