@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'i18n/checker/version'
+require 'i18n_checker/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "i18n-checker"
-  spec.version       = I18n::Checker::VERSION
+  spec.name          = "i18n_checker"
+  spec.version       = I18nChecker::VERSION
   spec.authors       = ["holyshared"]
   spec.email         = ["holy.shared.design@gmail.com"]
   spec.summary       = "i18n checker for haml"
   spec.description   = "It parses the haml template and checks the validity of the language file"
-  spec.homepage      = "https://github.com/holyshared/haml-i18n-checker"
+  spec.homepage      = "https://github.com/holyshared/i18n-checker"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
