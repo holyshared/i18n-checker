@@ -1,5 +1,5 @@
-require "i18n_checker/haml/locale_text"
-require "i18n_checker/haml/locale_texts"
+require "i18n_checker/locale/locale_text"
+require "i18n_checker/locale/locale_texts"
 require "i18n_checker/haml/locale_text_collector"
 
 module I18nChecker

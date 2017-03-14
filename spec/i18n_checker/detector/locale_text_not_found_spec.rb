@@ -1,8 +1,8 @@
 describe I18nChecker::Detector::LocaleTextNotFound do
   describe '#detect' do
     let(:locale_texts) do
-      I18nChecker::Haml::LocaleTexts.new([
-        I18nChecker::Haml::LocaleText.new(
+      I18nChecker::Locale::LocaleTexts.new([
+        I18nChecker::Locale::LocaleText.new(
           file: 'example.haml',
           text: 'nested.title',
           line: 1

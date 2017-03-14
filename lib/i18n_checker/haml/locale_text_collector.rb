@@ -7,7 +7,7 @@ module I18nChecker
       def collect(template_file)
         template = read_template_file(template_file)
         parser = HamlParser::Parser.new(filename: template_file)
-        LocaleTexts.new(collect_locale_texts(parser.call(template)))
+        I18nChecker::Locale::LocaleTexts.new(collect_locale_texts(parser.call(template)))
       end
 
       private
@@ -33,7 +33,7 @@ module I18nChecker
 
       def locale_text_from_script(script_node)
         return unless translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
-        I18nChecker::Haml::LocaleText.new(
+        I18nChecker::Locale::LocaleText.new(
           file: script_node.filename,
           line: script_node.lineno,
           text: translate_script[1]

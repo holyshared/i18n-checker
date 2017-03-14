@@ -17,7 +17,7 @@ describe I18nChecker::Reporter::DefaultReporter do
       I18nChecker::Detector::DetectedResult.new(
         [
           I18nChecker::Detector::LocaleTextResult.new(
-            locale_text: I18nChecker::Haml::LocaleText.new(
+            locale_text: I18nChecker::Locale::LocaleText.new(
               file: 'example.haml',
               text: 'nested.title',
               line: 1
