@@ -20,7 +20,8 @@ describe I18nChecker::Reporter::DefaultReporter do
             locale_text: I18nChecker::Locale::LocaleText.new(
               file: 'example.haml',
               text: 'nested.title',
-              line: 1
+              line: 1,
+              column: 1
             ),
             locale_file: I18nChecker::Locale::LocaleFile.new(english_locale)
           )

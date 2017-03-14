@@ -36,6 +36,7 @@ module I18nChecker
         I18nChecker::Locale::LocaleText.new(
           file: script_node.filename,
           line: script_node.lineno,
+          column: 0, # FIXME: collect from source file
           text: translate_script[1]
         )
       end

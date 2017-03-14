@@ -5,7 +5,8 @@ describe I18nChecker::Detector::LocaleTextNotFound do
         I18nChecker::Locale::LocaleText.new(
           file: 'example.haml',
           text: 'nested.title',
-          line: 1
+          line: 1,
+          column: 1
         )
       ])
     end
