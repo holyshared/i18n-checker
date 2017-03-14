@@ -1,5 +1,7 @@
 require "i18n_checker/version"
 require "i18n_checker/rake_task"
+require "i18n_checker/ruby/locale_text_processor"
+require "i18n_checker/ruby/locale_text_collector"
 require "i18n_checker/haml/locale_text_collector"
 require "i18n_checker/locale"
 require "i18n_checker/locale/locale_text"
