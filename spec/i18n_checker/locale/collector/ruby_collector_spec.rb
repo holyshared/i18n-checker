@@ -1,6 +1,6 @@
-describe I18nChecker::Ruby::LocaleTextCollector do
+describe I18nChecker::Locale::Collector::RubyCollector do
   describe '#collect' do
-    let(:collector) { I18nChecker::Ruby::LocaleTextCollector.new }
+    let(:collector) { I18nChecker::Locale::Collector::RubyCollector.new }
     let(:ruby_source_file) { 'spec/fixtures/ruby/lookup.rb' }
     subject { collector.collect(ruby_source_file).first }
     it 'should be return locale text' do

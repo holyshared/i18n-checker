@@ -2,8 +2,8 @@ require 'parser'
 require 'parser/current'
 
 module I18nChecker
-  module Ruby
-    class LocaleTextProcessor < Parser::AST::Processor
+  module Locale
+    class TextProcessor < Parser::AST::Processor
       attr_reader :file, :locale_texts
 
       def initialize(file:, locale_texts: [])
