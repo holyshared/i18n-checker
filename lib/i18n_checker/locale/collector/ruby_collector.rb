@@ -1,10 +1,13 @@
 require 'parser'
 require 'parser/current'
+require 'i18n_checker/collectible'
 
 module I18nChecker
   module Locale
     module Collector
       class RubyCollector
+        include I18nChecker::Collectible
+
         def collect(source_file)
           I18nChecker::Locale::LocaleTexts.new(process(source_file))
         end

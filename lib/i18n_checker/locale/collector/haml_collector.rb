@@ -1,10 +1,13 @@
 require 'haml_parser'
 require 'haml_parser/parser'
+require 'i18n_checker/collectible'
 
 module I18nChecker
   module Locale
     module Collector
       class HamlCollector
+        include I18nChecker::Collectible
+
         def collect(template_file)
           template = read_template_file(template_file)
           parser = HamlParser::Parser.new(filename: template_file)
