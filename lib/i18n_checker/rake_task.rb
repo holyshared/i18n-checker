@@ -13,8 +13,8 @@ module I18nChecker
 
     def initialize(name = :locale_check)
       @name = name
-      @template_paths = FileList['./app/views/*']
-      @locale_file_paths = FileList['./locales/*']
+      @template_paths = FileList['app/views/*']
+      @locale_file_paths = FileList['config/locales/*']
       @logger = Logger.new(STDOUT)
       @logger.formatter = proc {|severity, datetime, progname, message|
         "#{message}\n"
