@@ -3,16 +3,37 @@ require 'forwardable'
 module I18nChecker
   module Cache
     class Files
-      attr_reader :caches
+      extend Forwardable
 
-      def initialize(caches = {})
-        @caches = caches
+      include Enumerable
+
+      attr_reader :files
+
+      def_delegators :files, :size, :each
+
+      def initialize(files = {})
+        @files = files
       end
 
       def read(file)
-        return caches[file] if caches.key?(file)
-        caches[file] = Lines::of(::File.read(file))
-        caches[file]
+        return files[file] if files.key?(file)
+        files[file] = I18nChecker::Cache::File::of(file)
+        files[file]
+      end
+    end
+
+    class File
+      attr_reader :file, :lines
+
+      class << self
+        def of(file)
+          new(file, Lines::of(::File.read(file)))
+        end
+      end
+
+      def initialize(file, lines)
+        @file = file
+        @lines = lines
       end
     end
 
