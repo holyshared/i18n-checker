@@ -1,6 +1,6 @@
 module I18nChecker
   module Locale
-    class LocaleFiles
+    class Files
       include Enumerable
 
       def initialize(locale_files = [])

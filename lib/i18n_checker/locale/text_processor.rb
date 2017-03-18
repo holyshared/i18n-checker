@@ -15,7 +15,7 @@ module I18nChecker
         receiver_node, method_name, *arg_nodes = *node
         return super(node) unless method_name == :t
         arg_node = arg_nodes.first
-        locale_texts << I18nChecker::Locale::LocaleText.new(
+        locale_texts << I18nChecker::Locale::Text.new(
           file: file,
           line: arg_node.loc.line,
           column: arg_node.loc.column + 1,

@@ -17,13 +17,13 @@ describe I18nChecker::Reporter::DefaultReporter do
       I18nChecker::Detector::DetectedResult.new(
         [
           I18nChecker::Detector::LocaleTextResult.new(
-            locale_text: I18nChecker::Locale::LocaleText.new(
+            locale_text: I18nChecker::Locale::Text.new(
               file: 'example.haml',
               text: 'nested.title',
               line: 1,
               column: 1
             ),
-            locale_file: I18nChecker::Locale::LocaleFile.new(english_locale)
+            locale_file: I18nChecker::Locale::File.new(english_locale)
           )
         ]
       )

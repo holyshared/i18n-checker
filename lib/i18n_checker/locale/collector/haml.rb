@@ -1,23 +1,24 @@
 require 'haml_parser'
 require 'haml_parser/parser'
 require 'i18n_checker/collectible'
+require 'i18n_checker/locale/texts'
 
 module I18nChecker
   module Locale
     module Collector
-      class HamlCollector
+      class Haml
         include I18nChecker::Collectible
 
         def collect(template_file)
           template = read_template_file(template_file)
           parser = HamlParser::Parser.new(filename: template_file)
-          I18nChecker::Locale::LocaleTexts.new(collect_locale_texts(parser.call(template)))
+          I18nChecker::Locale::Texts.new(collect_locale_texts(parser.call(template)))
         end
 
         private
 
         def read_template_file(template_file)
-          File.open(template_file, &:read)
+          ::File.open(template_file, &:read)
         end
 
         def collect_locale_texts(ast)
@@ -37,7 +38,7 @@ module I18nChecker
 
         def locale_text_from_script(script_node)
           return unless translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
-          I18nChecker::Locale::LocaleText.new(
+          I18nChecker::Locale::Text.new(
             file: script_node.filename,
             line: script_node.lineno,
             column: 0, # FIXME: collect from source file

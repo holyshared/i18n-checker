@@ -1,6 +1,8 @@
+require 'i18n_checker/locale/text'
+
 module I18nChecker
   module Locale
-    class LocaleTexts
+    class Texts
       include Enumerable
 
       def initialize(texts = [])

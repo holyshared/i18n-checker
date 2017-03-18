@@ -1,6 +1,6 @@
 module I18nChecker
   module Locale
-    class LocaleText
+    class Text
       attr_reader :file, :text, :line, :column
 
       def initialize(file:, text:, line:, column:)

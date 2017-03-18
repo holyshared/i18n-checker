@@ -2,7 +2,7 @@ require 'yaml'
 
 module I18nChecker
   module Locale
-    class LocaleFile
+    class File
       attr_reader :lang, :locale_texts
 
       class << self
@@ -10,7 +10,7 @@ module I18nChecker
           new(YAML.load(s))
         end
         def load_yaml_file(yaml_file)
-          load_yaml(File.open(yaml_file, &:read))
+          load_yaml(::File.open(yaml_file, &:read))
         end
       end
 

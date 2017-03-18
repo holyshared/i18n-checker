@@ -1,22 +1,23 @@
 require 'parser'
 require 'parser/current'
 require 'i18n_checker/collectible'
+require 'i18n_checker/locale/texts'
 
 module I18nChecker
   module Locale
     module Collector
-      class RubyCollector
+      class Ruby
         include I18nChecker::Collectible
 
         def collect(source_file)
-          I18nChecker::Locale::LocaleTexts.new(process(source_file))
+          I18nChecker::Locale::Texts.new(process(source_file))
         end
 
         private
 
         def buffer_of(source_file)
           source_buffer = Parser::Source::Buffer.new('(string)')
-          source_buffer.source = File.read(source_file)
+          source_buffer.source = ::File.read(source_file)
           source_buffer
         end
 
