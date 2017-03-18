@@ -63,6 +63,11 @@ module I18nChecker
         @lines = lines
       end
 
+      def [](scope)
+        return lines_of(scope) if scope.kind_of?(Range)
+        return line_of(scope) if scope.kind_of?(Integer)
+      end
+
       def line_of(line_number)
         lines[line_number]
       end
@@ -84,6 +89,18 @@ module I18nChecker
       def initialize(line_number, content)
         @line = line_number
         @content = content
+      end
+
+      def [](range)
+        columns_of(range)
+      end
+
+      def columns_of(range)
+        content[range.first - 1, range.last]
+      end
+
+      def to_s
+        content
       end
     end
   end
