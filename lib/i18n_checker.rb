@@ -1,6 +1,7 @@
 require "i18n_checker/version"
 require "i18n_checker/rake_task"
 require "i18n_checker/collectible"
+require "i18n_checker/cache"
 require "i18n_checker/locale"
 require "i18n_checker/locale/text_processor"
 require "i18n_checker/locale/collector/haml"
