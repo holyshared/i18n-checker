@@ -6,6 +6,10 @@ module I18nChecker
       def initialize(locale_texts = [])
         @locale_texts = locale_texts
       end
+
+      def empty?
+        locale_texts.empty?
+      end
     end
   end
 end
