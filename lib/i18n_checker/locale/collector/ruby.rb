@@ -2,6 +2,7 @@ require 'parser'
 require 'parser/current'
 require 'i18n_checker/collectible'
 require 'i18n_checker/locale/texts'
+require 'i18n_checker/locale/text_processor'
 
 module I18nChecker
   module Locale
