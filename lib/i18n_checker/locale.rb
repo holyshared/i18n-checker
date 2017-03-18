@@ -17,7 +17,7 @@ module I18nChecker
         grouped_locale_texts = grouped_files.map do |k, v|
           text_collector_of(k).collect_all(v)
         end
-        grouped_locale_texts.reduce { |locale_texts, n| locale_texts.concat(n) }
+        grouped_locale_texts.reduce { |locale_texts, n| locale_texts.concat(n) }.uniq!
       end
 
       def text_collector_of(file_extname)

@@ -1,20 +1,26 @@
+require 'forwardable'
 require 'i18n_checker/locale/text'
 
 module I18nChecker
   module Locale
     class Texts
+      extend Forwardable
+
       include Enumerable
+
+      def_delegators :texts, :size, :each
 
       def initialize(texts = [])
         @texts = texts
       end
 
-      def each(&block)
-        texts.each(&block)
-      end
-
       def concat(texts)
         @texts.concat(texts.to_a)
+        self
+      end
+
+      def uniq!
+        @texts.uniq!
         self
       end
 
@@ -32,3 +38,4 @@ module I18nChecker
     end
   end
 end
+
