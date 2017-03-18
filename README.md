@@ -7,7 +7,10 @@
 
 This gem provides a **Rake task** to check translation file mistakes and translated text references from template files etc.
 
-In the current version you can check the translation text reference from Haml's template file.
+Current version supports Ruby source code, Haml template file.
+
+* Ruby source
+* Haml template
 
 ## Basic usage
 
@@ -17,7 +20,8 @@ Add the following tasks to your **Rakefile**.
 require 'i18n_checker/rake_task'
 
 I18nChecker::RakeTask.new do |task|
-  task.template_paths = FileList['app/views/*'] # haml template   task.locale_file_paths = FileList['config/locales/*'] # locale file paths
+  task.template_paths = FileList['app/views/*'] # haml templates
+  task.locale_file_paths = FileList['config/locales/*'] # locale file paths
 paths
 end
 ```
