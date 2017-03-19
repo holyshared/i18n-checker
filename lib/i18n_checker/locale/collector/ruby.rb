@@ -10,6 +10,12 @@ module I18nChecker
       class Ruby
         include I18nChecker::Collectible
 
+        attr_reader :file_caches
+
+        def initialize(file_caches = I18nChecker::Cache::Files.new)
+          @file_caches = file_caches
+        end
+
         def collect(source_file)
           I18nChecker::Locale::Texts.new(process(source_file))
         end
@@ -17,8 +23,9 @@ module I18nChecker
         private
 
         def buffer_of(source_file)
+          source = file_caches.read(source_file).to_s
           source_buffer = Parser::Source::Buffer.new('(string)')
-          source_buffer.source = ::File.read(source_file)
+          source_buffer.source = source
           source_buffer
         end
 

@@ -35,6 +35,14 @@ module I18nChecker
         @file = file
         @lines = lines
       end
+
+      def [](scope)
+        lines[scope]
+      end
+
+      def to_s
+        lines.to_s
+      end
     end
 
     class Lines
@@ -81,6 +89,10 @@ module I18nChecker
         end
         self.class.new(results)
       end
+
+      def to_s
+        lines.values.join("\n")
+      end
     end
 
     class Line
@@ -97,6 +109,10 @@ module I18nChecker
 
       def columns_of(range)
         content[range.first - 1, range.last]
+      end
+
+      def start_of(text)
+        content.index(text)
       end
 
       def to_s

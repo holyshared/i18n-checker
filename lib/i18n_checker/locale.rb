@@ -12,20 +12,22 @@ module I18nChecker
       end
 
       def texts_of(resources)
+        caches = I18nChecker::Cache::Files.new
+
         files = resources.delete_if { |resource| ::File.directory?(resource) }.to_a
         grouped_files = files.group_by { |file| ::File.extname(file) }
         grouped_locale_texts = grouped_files.map do |k, v|
-          text_collector_of(k).collect_all(v)
+          text_collector_of(k, caches: caches).collect_all(v)
         end
         grouped_locale_texts.reduce { |locale_texts, n| locale_texts.concat(n) }.uniq!
       end
 
-      def text_collector_of(file_extname)
+      def text_collector_of(file_extname, caches:)
         case file_extname
         when '.haml'
-          I18nChecker::Locale::Collector::Haml.new
+          I18nChecker::Locale::Collector::Haml.new(caches)
         when '.rb'
-          I18nChecker::Locale::Collector::Ruby.new
+          I18nChecker::Locale::Collector::Ruby.new(caches)
         else
           raise StandardError, "not support #{extname} file" # FIXME: throw custom error!!
         end
