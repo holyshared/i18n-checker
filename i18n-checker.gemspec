@@ -6,6 +6,7 @@ require 'i18n_checker/version'
 Gem::Specification.new do |spec|
   spec.name          = "i18n_checker"
   spec.version       = I18nChecker::VERSION
+  spec.licenses      = ['MIT']
   spec.authors       = ["holyshared"]
   spec.email         = ["holy.shared.design@gmail.com"]
   spec.summary       = "Verification of translation of Ruby source and Haml template"
