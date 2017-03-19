@@ -9,6 +9,12 @@ module I18nChecker
       class Haml
         include I18nChecker::Collectible
 
+        attr_reader :file_caches
+
+        def initialize(file_caches = I18nChecker::Cache::Files.new)
+          @file_caches = file_caches
+        end
+
         def collect(template_file)
           template = read_template_file(template_file)
           parser = HamlParser::Parser.new(filename: template_file)
@@ -18,7 +24,7 @@ module I18nChecker
         private
 
         def read_template_file(template_file)
-          ::File.open(template_file, &:read)
+          file_caches.read(template_file).to_s
         end
 
         def collect_locale_texts(ast)
@@ -38,11 +44,16 @@ module I18nChecker
 
         def locale_text_from_script(script_node)
           return unless translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
+
+          locale_text = translate_script[1]
+          file_cache = file_caches.read(script_node.filename)
+          column = file_cache[script_node.lineno].start_of(locale_text)
+
           I18nChecker::Locale::Text.new(
             file: script_node.filename,
             line: script_node.lineno,
-            column: 0, # FIXME: collect from source file
-            text: translate_script[1]
+            column: column,
+            text: locale_text
           )
         end
       end

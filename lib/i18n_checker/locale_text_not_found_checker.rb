@@ -1,5 +1,5 @@
 require "i18n_checker/detector/locale_text_not_found"
-require "i18n_checker/detector/locale_text_result"
+require "i18n_checker/detector/text_result"
 require "i18n_checker/detector/detected_result"
 
 module I18nChecker
