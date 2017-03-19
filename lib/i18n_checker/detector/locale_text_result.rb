@@ -1,30 +1,21 @@
+require 'forwardable'
+
 module I18nChecker
   module Detector
     class LocaleTextResult
+      extend Forwardable
+
+      def_delegators :locale_file, :lang
+      def_delegators :locale_text, :file, :line, :column, :text
+
       def initialize(locale_file:, locale_text:)
         @locale_text = locale_text
         @locale_file = locale_file
       end
 
-      def file_name
-        @locale_text.file
-      end
+      private
 
-      def lang
-        @locale_file.lang
-      end
-
-      def line
-        @locale_text.line
-      end
-
-      def column
-        @locale_text.column
-      end
-
-      def text
-        @locale_text.text
-      end
+      attr_reader :locale_file, :locale_text
     end
   end
 end
