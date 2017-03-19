@@ -12,16 +12,16 @@ module I18nChecker
 
       private
 
-      def detect_not_found(locale_text)
-        locale_files = @locale_files.dup
-        locale_files.delete_if { |locale_file| locale_file.include?(locale_text) }
-        locale_files.map do |locale_file|
-          TextResult.new(
-            locale_text: locale_text,
-            locale_file: locale_file
-          )
+        def detect_not_found(locale_text)
+          locale_files = @locale_files.dup
+          locale_files.delete_if { |locale_file| locale_file.include?(locale_text) }
+          locale_files.map do |locale_file|
+            TextResult.new(
+              locale_text: locale_text,
+              locale_file: locale_file
+            )
+          end
         end
-      end
     end
   end
 end

@@ -2,7 +2,7 @@ describe I18nChecker::Reporter::DefaultReporter do
   describe '#report' do
     let(:logger) do
       logger = Logger.new(STDOUT)
-      logger.formatter = proc {|severity, datetime, progname, message|
+      logger.formatter = proc { |_severity, _datetime, _progname, message|
         "#{message}\n"
       }
       logger
@@ -24,7 +24,7 @@ describe I18nChecker::Reporter::DefaultReporter do
               column: 1
             ),
             locale_file: I18nChecker::Locale::File.new(english_locale)
-          )
+          ),
         ]
       )
     end

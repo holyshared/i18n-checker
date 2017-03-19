@@ -15,7 +15,7 @@ module I18nChecker
 
       private
 
-      attr_reader :locale_file, :locale_text
+        attr_reader :locale_file, :locale_text
     end
   end
 end

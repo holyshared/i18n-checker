@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'i18n_checker/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "i18n_checker"
+  spec.name          = 'i18n_checker'
   spec.version       = I18nChecker::VERSION
   spec.licenses      = ['MIT']
-  spec.authors       = ["holyshared"]
-  spec.email         = ["holy.shared.design@gmail.com"]
-  spec.summary       = "Verification of translation of Ruby source and Haml template"
-  spec.description   = "Verification of translation of Ruby source and Haml template"
-  spec.homepage      = "https://github.com/holyshared/i18n-checker"
+  spec.authors       = ['holyshared']
+  spec.email         = ['holy.shared.design@gmail.com']
+  spec.summary       = 'Verification of translation of Ruby source and Haml template'
+  spec.description   = 'Verification of translation of Ruby source and Haml template'
+  spec.homepage      = 'https://github.com/holyshared/i18n-checker'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -22,10 +22,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'haml_parser', '~> 0.4'
   spec.add_dependency 'colorator', '~> 1.1.0'
   spec.add_dependency 'parser'
-  spec.add_development_dependency 'bundler','~> 1.14'
+  spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'simplecov-console'
   spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'onkcop'
 end

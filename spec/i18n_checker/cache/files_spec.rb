@@ -8,7 +8,7 @@ describe I18nChecker::Cache::Files do
       it 'should be return file' do
         expect(subject.lines.size).to eq(10)
       end
-   end
+    end
     context 'when cache exist' do
       let(:caches) do
         caches = double('caches')
@@ -25,4 +25,3 @@ describe I18nChecker::Cache::Files do
     end
   end
 end
-

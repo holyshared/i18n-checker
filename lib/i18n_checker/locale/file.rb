@@ -9,6 +9,7 @@ module I18nChecker
         def load_yaml(s)
           new(YAML.load(s))
         end
+
         def load_yaml_file(yaml_file)
           load_yaml(::File.open(yaml_file, &:read))
         end
@@ -26,19 +27,19 @@ module I18nChecker
 
       private
 
-      def compact_of(values={}, path=KeyPath.new)
-        result = {}
-        values.each_with_index do |(i, v)|
-          path.move_to(i)
-          if v.is_a?(Hash)
-            result.merge!(compact_of(v, path))
-          else
-            result[path.to_s] = v
+        def compact_of(values = {}, path = KeyPath.new)
+          result = {}
+          values.each_with_index do |(i, v)|
+            path.move_to(i)
+            if v.is_a?(Hash)
+              result.merge!(compact_of(v, path))
+            else
+              result[path.to_s] = v
+            end
+            path.leave
           end
-          path.leave
+          result
         end
-        result
-      end
     end
   end
 end

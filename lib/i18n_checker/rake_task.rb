@@ -3,7 +3,7 @@ require 'rake/tasklib'
 require 'i18n_checker/cache'
 require 'i18n_checker/locale'
 require 'i18n_checker/reporter'
-require "i18n_checker/locale_text_not_found_checker"
+require 'i18n_checker/locale_text_not_found_checker'
 
 module I18nChecker
   class RakeTask < ::Rake::TaskLib
@@ -18,7 +18,7 @@ module I18nChecker
       @source_paths = FileList['app/views/*', 'app/controllers/*', 'app/jobs/*', 'app/models/*', 'app/helpers/*']
       @locale_file_paths = FileList['config/locales/*']
       @logger = Logger.new(STDOUT)
-      @logger.formatter = proc {|severity, datetime, progname, message|
+      @logger.formatter = proc { |_severity, _datetime, _progname, message|
         "#{message}\n"
       }
       @reporter = I18nChecker::Reporter::DefaultReporter.new(logger: logger)
@@ -28,20 +28,20 @@ module I18nChecker
 
     private
 
-    def define
-      desc 'Check language files and templates.'
-      task(name) { run_task }
-    end
-
-    def run_task
-      checker = I18nChecker::LocaleTextNotFoundChecker.new(
-        reporter: reporter,
-        source_paths: source_paths,
-        locale_file_paths: locale_file_paths
-      )
-      checker.check do |result|
-        exit 1 unless result.empty?
+      def define
+        desc 'Check language files and templates.'
+        task(name) { run_task }
       end
-    end
+
+      def run_task
+        checker = I18nChecker::LocaleTextNotFoundChecker.new(
+          reporter: reporter,
+          source_paths: source_paths,
+          locale_file_paths: locale_file_paths
+        )
+        checker.check do |result|
+          exit 1 unless result.empty?
+        end
+      end
   end
 end

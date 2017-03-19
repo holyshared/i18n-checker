@@ -1,5 +1,5 @@
 describe I18nChecker::Cache::Line do
-  let(:line) { I18nChecker::Cache::Line.new(1, "abcd") }
+  let(:line) { I18nChecker::Cache::Line.new(1, 'abcd') }
   describe '#[]' do
     subject { line[(1..3)] }
     context 'when valid range' do

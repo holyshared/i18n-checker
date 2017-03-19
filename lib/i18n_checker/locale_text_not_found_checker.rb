@@ -1,6 +1,6 @@
-require "i18n_checker/detector/locale_text_not_found"
-require "i18n_checker/detector/text_result"
-require "i18n_checker/detector/detected_result"
+require 'i18n_checker/detector/locale_text_not_found'
+require 'i18n_checker/detector/text_result'
+require 'i18n_checker/detector/detected_result'
 
 module I18nChecker
   class LocaleTextNotFoundChecker
@@ -12,7 +12,7 @@ module I18nChecker
 
     def check
       not_found_detector = I18nChecker::Detector::LocaleTextNotFound.new(@locale_files)
-      not_found_result = @locale_texts.detect(not_found_detector) 
+      not_found_result = @locale_texts.detect(not_found_detector)
       @reporter.report not_found_result
       yield not_found_result if block_given?
     end

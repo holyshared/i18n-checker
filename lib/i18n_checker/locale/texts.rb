@@ -34,8 +34,7 @@ module I18nChecker
 
       private
 
-      attr_reader :texts
+        attr_reader :texts
     end
   end
 end
-

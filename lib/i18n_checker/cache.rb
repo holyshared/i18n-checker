@@ -17,7 +17,7 @@ module I18nChecker
 
       def read(file)
         return files[file] if files.key?(file)
-        files[file] = I18nChecker::Cache::File::of(file)
+        files[file] = I18nChecker::Cache::File.of(file)
         files[file]
       end
     end
@@ -27,7 +27,7 @@ module I18nChecker
 
       class << self
         def of(file)
-          new(file, Lines::of(::File.read(file)))
+          new(file, Lines.of(::File.read(file)))
         end
       end
 
@@ -72,8 +72,8 @@ module I18nChecker
       end
 
       def [](scope)
-        return lines_of(scope) if scope.kind_of?(Range)
-        return line_of(scope) if scope.kind_of?(Integer)
+        return lines_of(scope) if scope.is_a?(Range)
+        return line_of(scope) if scope.is_a?(Integer)
       end
 
       def line_of(line_number)

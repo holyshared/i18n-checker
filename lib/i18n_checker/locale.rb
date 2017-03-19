@@ -1,7 +1,7 @@
-require "i18n_checker/locale/key_path"
-require "i18n_checker/locale/file"
-require "i18n_checker/locale/files"
-require "i18n_checker/locale/collector"
+require 'i18n_checker/locale/key_path'
+require 'i18n_checker/locale/file'
+require 'i18n_checker/locale/files'
+require 'i18n_checker/locale/collector'
 
 module I18nChecker
   module Locale

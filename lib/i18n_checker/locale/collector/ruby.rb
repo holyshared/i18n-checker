@@ -22,23 +22,23 @@ module I18nChecker
 
         private
 
-        def buffer_of(source_file)
-          source = file_caches.read(source_file).to_s
-          source_buffer = Parser::Source::Buffer.new('(string)')
-          source_buffer.source = source
-          source_buffer
-        end
+          def buffer_of(source_file)
+            source = file_caches.read(source_file).to_s
+            source_buffer = Parser::Source::Buffer.new('(string)')
+            source_buffer.source = source
+            source_buffer
+          end
 
-        def parse_source(source_file)
-          parser = Parser::CurrentRuby.new
-          parser.parse(buffer_of(source_file))
-        end
+          def parse_source(source_file)
+            parser = Parser::CurrentRuby.new
+            parser.parse(buffer_of(source_file))
+          end
 
-        def process(source_file)
-          processor = I18nChecker::Locale::TextProcessor.new(file: source_file)
-          processor.process(parse_source(source_file))
-          processor.locale_texts
-        end
+          def process(source_file)
+            processor = I18nChecker::Locale::TextProcessor.new(file: source_file)
+            processor.process(parse_source(source_file))
+            processor.locale_texts
+          end
       end
     end
   end
