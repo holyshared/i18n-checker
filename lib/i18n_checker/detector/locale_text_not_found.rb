@@ -16,7 +16,7 @@ module I18nChecker
         locale_files = @locale_files.dup
         locale_files.delete_if { |locale_file| locale_file.include?(locale_text) }
         locale_files.map do |locale_file|
-          LocaleTextResult.new(
+          TextResult.new(
             locale_text: locale_text,
             locale_file: locale_file
           )

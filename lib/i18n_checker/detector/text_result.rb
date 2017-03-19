@@ -2,7 +2,7 @@ require 'forwardable'
 
 module I18nChecker
   module Detector
-    class LocaleTextResult
+    class TextResult
       extend Forwardable
 
       def_delegators :locale_file, :lang

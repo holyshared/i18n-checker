@@ -19,7 +19,7 @@ describe I18nChecker::Detector::LocaleTextNotFound do
     subject { detector.detect(locale_texts) }
     it 'should be return detected texts' do
       expect(subject.locale_texts.size).to eq 1
-      expect(subject.locale_texts.first.file_name).to eq 'example.haml'
+      expect(subject.locale_texts.first.file).to eq 'example.haml'
     end
   end
 end
