@@ -9,13 +9,13 @@ module I18nChecker
   class RakeTask < ::Rake::TaskLib
     attr_accessor :name
     attr_accessor :reporter
-    attr_accessor :template_paths
+    attr_accessor :source_paths
     attr_accessor :locale_file_paths
     attr_accessor :logger
 
     def initialize(name = :locale_check)
       @name = name
-      @template_paths = FileList['app/views/*']
+      @source_paths = FileList['app/views/*', 'app/controllers/*', 'app/jobs/*', 'app/models/*', 'app/helpers/*']
       @locale_file_paths = FileList['config/locales/*']
       @logger = Logger.new(STDOUT)
       @logger.formatter = proc {|severity, datetime, progname, message|
@@ -36,7 +36,7 @@ module I18nChecker
     def run_task
       checker = I18nChecker::LocaleTextNotFoundChecker.new(
         reporter: reporter,
-        template_paths: template_paths,
+        source_paths: source_paths,
         locale_file_paths: locale_file_paths
       )
       checker.check do |result|

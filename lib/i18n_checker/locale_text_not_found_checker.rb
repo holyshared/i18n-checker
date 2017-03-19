@@ -4,9 +4,9 @@ require "i18n_checker/detector/detected_result"
 
 module I18nChecker
   class LocaleTextNotFoundChecker
-    def initialize(locale_file_paths: [], template_paths: [], reporter:)
+    def initialize(locale_file_paths: [], source_paths: [], reporter:)
       @reporter = reporter
-      @locale_texts = I18nChecker::Locale.texts_of(template_paths)
+      @locale_texts = I18nChecker::Locale.texts_of(source_paths)
       @locale_files = I18nChecker::Locale.load_of(locale_file_paths)
     end
 
