@@ -40,8 +40,7 @@ module I18nChecker
         locale_file_paths: locale_file_paths
       )
       checker.check do |result|
-        exit 0 if result.empty?
-        exit 1
+        exit 1 unless result.empty?
       end
     end
   end
