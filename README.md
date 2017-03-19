@@ -20,7 +20,7 @@ Add the following tasks to your **Rakefile**.
 require 'i18n_checker/rake_task'
 
 I18nChecker::RakeTask.new do |task|
-  task.template_paths = FileList['app/views/*'] # haml templates
+  task.source_paths = FileList['app/models/*', 'app/views/*'] # haml templates, ruby sources
   task.locale_file_paths = FileList['config/locales/*'] # locale file paths
 paths
 end
