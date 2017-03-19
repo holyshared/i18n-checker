@@ -8,6 +8,7 @@ require "i18n_checker/locale_text_not_found_checker"
 module I18nChecker
   class RakeTask < ::Rake::TaskLib
     attr_accessor :name
+    attr_accessor :reporter
     attr_accessor :template_paths
     attr_accessor :locale_file_paths
     attr_accessor :logger
@@ -20,6 +21,7 @@ module I18nChecker
       @logger.formatter = proc {|severity, datetime, progname, message|
         "#{message}\n"
       }
+      @reporter = I18nChecker::Reporter::DefaultReporter.new(logger: logger)
       yield self if block_given?
       define
     end
@@ -32,16 +34,15 @@ module I18nChecker
     end
 
     def run_task
-      reporter = I18nChecker::Reporter::DefaultReporter.new(logger: logger)
-      locale_texts = I18nChecker::Locale.texts_of(template_paths)
-      locale_files = I18nChecker::Locale.load_of(locale_file_paths)
-
       checker = I18nChecker::LocaleTextNotFoundChecker.new(
         reporter: reporter,
-        locale_texts: locale_texts,
-        locale_files: locale_files
+        template_paths: template_paths,
+        locale_file_paths: locale_file_paths
       )
-      checker.check
+      checker.check do |result|
+        exit 0 if result.empty?
+        exit 1
+      end
     end
   end
 end
