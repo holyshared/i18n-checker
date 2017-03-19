@@ -1,5 +1,6 @@
 require 'rake'
 require 'rake/tasklib'
+require 'i18n_checker/cache'
 require 'i18n_checker/locale'
 require 'i18n_checker/reporter'
 require "i18n_checker/locale_text_not_found_checker"

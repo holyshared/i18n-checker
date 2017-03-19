@@ -18,6 +18,10 @@ module I18nChecker
         @locale_text.line
       end
 
+      def column
+        @locale_text.column
+      end
+
       def text
         @locale_text.text
       end
