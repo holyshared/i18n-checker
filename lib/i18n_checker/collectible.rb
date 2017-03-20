@@ -5,7 +5,7 @@ module I18nChecker
 
     def collect_all(files)
       texts = files.map { |file| collect(file) }
-      texts.reduce { |texts, n| texts.concat(n) }
+      texts.reduce { |merged_texts, n| merged_texts.concat(n) }
     end
   end
 end

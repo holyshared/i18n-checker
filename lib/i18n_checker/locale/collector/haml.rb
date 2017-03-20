@@ -43,7 +43,8 @@ module I18nChecker
           end
 
           def locale_text_from_script(script_node)
-            return unless translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
+            translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
+            return unless translate_script
 
             locale_text = translate_script[1]
             file_cache = file_caches.read(script_node.filename)
