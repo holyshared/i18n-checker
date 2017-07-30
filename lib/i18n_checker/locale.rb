@@ -7,7 +7,8 @@ module I18nChecker
   module Locale
     module Methods
       def load_of(locale_files)
-        loaded_locale_files = locale_files.map { |locale_file| I18nChecker::Locale::File.load_yaml_file(locale_file) }
+        files = locale_files.delete_if { |resource| ::File.directory?(resource) }.to_a
+        loaded_locale_files = files.map { |locale_file| I18nChecker::Locale::File.load_yaml_file(locale_file) }
         Files.new(loaded_locale_files)
       end
 

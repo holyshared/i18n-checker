@@ -9,4 +9,9 @@ I18nChecker::RakeTask::LocaleCheck.new do |task|
   task.locale_file_paths = FileList['spec/fixtures/locales/**']
 end
 
+I18nChecker::RakeTask::Clean.new do |task|
+  task.source_paths = FileList['spec/fixtures/haml/*', 'spec/fixtures/ruby/*']
+  task.locale_file_paths = FileList['spec/fixtures/locales/**']
+end
+
 task :default => :spec
