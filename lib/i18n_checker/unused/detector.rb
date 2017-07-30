@@ -12,8 +12,8 @@ module I18nChecker
         unused_texts = cleaned_locale_files(locale_texts).map do |locale_file|
           locale_file.locale_texts.map do |text|
             I18nChecker::Unused::Text.new(
-              locale_text: text,
-              locale_file: locale_file
+              text: text,
+              file: locale_file
             )
           end
         end

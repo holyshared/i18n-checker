@@ -5,16 +5,14 @@ module I18nChecker
     class Text
       extend Forwardable
 
-      def_delegators :locale_file, :lang
+      attr_reader :file, :text
 
-      def initialize(locale_file:, locale_text:)
-        @locale_text = locale_text
-        @locale_file = locale_file
+      def_delegators :file, :lang, :file_name
+
+      def initialize(file:, text:)
+        @file = file
+        @text = text
       end
-
-      private
-
-        attr_reader :locale_file, :locale_text
     end
   end
 end

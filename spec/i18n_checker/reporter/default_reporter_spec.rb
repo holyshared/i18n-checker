@@ -23,7 +23,7 @@ describe I18nChecker::Reporter::DefaultReporter do
               line: 1,
               column: 1
             ),
-            locale_file: I18nChecker::Locale::File.new(english_locale)
+            locale_file: I18nChecker::Locale::File.new('config/locale/en.yml', english_locale)
           ),
         ]
       )

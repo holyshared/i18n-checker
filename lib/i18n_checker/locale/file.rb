@@ -3,22 +3,19 @@ require 'yaml'
 module I18nChecker
   module Locale
     class File
-      attr_reader :lang, :locale_texts
+      attr_reader :file_name, :lang, :locale_texts
 
       class << self
-        def load_yaml(s)
-          new(YAML.load(s))
-        end
-
         def load_yaml_file(yaml_file)
-          load_yaml(::File.open(yaml_file, &:read))
+          new(yaml_file, YAML.load(::File.open(yaml_file, &:read)))
         end
       end
 
-      def initialize(locale_texts = {})
+      def initialize(yaml_file, locale_texts = {})
         lang = locale_texts.keys.first
         @lang = lang.to_sym
         @locale_texts = compact_of(locale_texts[lang] || {})
+        @file_name = yaml_file
       end
 
       def include?(locale_text)
@@ -34,7 +31,7 @@ module I18nChecker
         remain_texts = {}
         remain_texts[@lang] = current_locale_texts
 
-        self.class.new(remain_texts)
+        self.class.new(file_name, remain_texts)
       end
 
       private
