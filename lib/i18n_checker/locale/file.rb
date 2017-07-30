@@ -25,6 +25,18 @@ module I18nChecker
         @locale_texts.key?(locale_text.text)
       end
 
+      def remove_texts(locale_texts)
+        registry = locale_texts.map { |locale_text| [locale_text, true] }.to_h
+
+        current_locale_texts = @locale_texts.dup
+        current_locale_texts.delete_if { |locale_text| registry.key?(locale_text) }
+
+        remain_texts = {}
+        remain_texts[@lang] = current_locale_texts
+
+        self.class.new(remain_texts)
+      end
+
       private
 
         def compact_of(values = {}, path = KeyPath.new)

@@ -8,7 +8,7 @@ module I18nChecker
 
       include Enumerable
 
-      def_delegators :texts, :size, :each
+      def_delegators :texts, :size, :each, :select
 
       def initialize(texts = [])
         @texts = texts
