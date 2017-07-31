@@ -34,6 +34,14 @@ module I18nChecker
         self.class.new(file_name, remain_texts)
       end
 
+      def save
+        locale = {}
+        locale[@lang.to_s] = tree_of(locale_texts)
+        yaml_file = ::File.open(file_name, 'w')
+        yaml_file.write(YAML.dump(locale))
+        yaml_file.close
+      end
+
       private
 
         def compact_of(values = {}, path = KeyPath.new)
@@ -46,6 +54,26 @@ module I18nChecker
               result[path.to_s] = v
             end
             path.leave
+          end
+          result
+        end
+
+        def tree_of(values = [])
+          result = {}
+          values.each do |path, value|
+            dest = nil
+            paths = path.split('.')
+            last_key = paths.last
+            paths.pop
+            paths.each do |p|
+              if result.key?(p)
+                dest = result[p]
+              else
+                result[p] = {}
+                dest = result[p]
+              end
+            end
+            dest[last_key] = value
           end
           result
         end

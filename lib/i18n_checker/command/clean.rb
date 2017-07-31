@@ -13,6 +13,7 @@ module I18nChecker
       def run
         unused_result = @locale_texts.detect(@unused_detector)
         @reporter.report unused_result
+        unused_result.apply(@locale_files)
         yield unused_result if block_given?
       end
     end
