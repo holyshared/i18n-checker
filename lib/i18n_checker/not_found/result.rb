@@ -1,6 +1,6 @@
 module I18nChecker
-  module Detector
-    class DetectedResult
+  module NotFound
+    class Result
       attr_reader :locale_texts
 
       def initialize(locale_texts = [])

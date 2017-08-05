@@ -13,12 +13,8 @@ require 'i18n_checker/locale/file'
 require 'i18n_checker/locale/files'
 require 'i18n_checker/unused/detector'
 require 'i18n_checker/unused/reporter'
-require 'i18n_checker/detector/locale_text_not_found'
-require 'i18n_checker/detector/text_result'
-require 'i18n_checker/detector/detected_result'
-require 'i18n_checker/reporter/detect_result_reporter'
-require 'i18n_checker/reporter/default_reporter'
-require 'i18n_checker/locale_text_not_found_checker'
+require 'i18n_checker/not_found/detector'
+require 'i18n_checker/not_found/reporter'
 
 module I18nChecker
 end
