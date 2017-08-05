@@ -6,12 +6,18 @@ require 'i18n_checker/locale/collector'
 module I18nChecker
   module Locale
     module Methods
+      # Read specified translation file
+      #
+      # @return [I18nChecker::Locale::Files]
       def load_of(locale_files)
         files = locale_files.delete_if { |resource| ::File.directory?(resource) }.to_a
         loaded_locale_files = files.map { |locale_file| I18nChecker::Locale::File.load_yaml_file(locale_file) }
         Files.new(loaded_locale_files)
       end
 
+      # Collect translation text from specified file list
+      #
+      # @return [I18nChecker::Locale::Texts]
       def texts_of(resources)
         caches = I18nChecker::Cache::Files.new
 

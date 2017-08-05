@@ -16,7 +16,7 @@ describe I18nChecker::Unused::Result do
           I18nChecker::Unused::Text.new(
             text: 'nested.title',
             file: locale_file
-          )
+          ),
         ]
       )
     end

@@ -12,8 +12,8 @@ describe I18nChecker::Unused::Reporter::Default do
       english_locale = {}
       english_locale['en'] = {
         nested: {
-          title: 'foo'
-        }
+          title: 'foo',
+        },
       }
       english_locale
     end

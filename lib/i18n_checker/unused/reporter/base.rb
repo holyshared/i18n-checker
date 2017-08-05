@@ -8,7 +8,7 @@ module I18nChecker
 
         private
 
-        attr_reader :logger
+          attr_reader :logger
       end
     end
   end
