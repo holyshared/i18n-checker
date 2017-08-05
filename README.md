@@ -31,6 +31,26 @@ After that we just execute the task.
 bundle exec rake locale_check
 ```
 
+## Delete unused translated text
+
+Using the **locale_clean** task you can delete unused translated text from the file.  
+Since you can delete translated text that you do not use safely, you can reduce the maintenance cost by running it periodically.
+
+```ruby
+require 'i18n_checker/rake_task'
+
+I18nChecker::RakeTask::Clean do |task|
+  task.source_paths = FileList['app/models/*', 'app/views/*'] # haml templates, ruby sources
+  task.locale_file_paths = FileList['config/locales/*'] # locale file paths
+end
+```
+
+After that we just execute the task.
+
+```shell
+bundle exec rake locale_clean
+```
+
 ## Run the test
 
 ```shell
