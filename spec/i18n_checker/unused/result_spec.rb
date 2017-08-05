@@ -26,6 +26,7 @@ describe I18nChecker::Unused::Result do
     end
     it 'should be remove unused texts' do
       expect(subject['ja']['nested'].key?('title')).to eq(false)
+      expect(subject['ja']['nested'].key?('description')).to eq(true)
     end
   end
 end

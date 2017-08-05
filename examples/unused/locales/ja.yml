@@ -1,0 +1,7 @@
+ja:
+  nested:
+    foo: foo
+    bar: bar
+  nested2:
+    foo: foo
+    bar: bar

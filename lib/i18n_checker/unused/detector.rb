@@ -10,9 +10,9 @@ module I18nChecker
 
       def detect(locale_texts)
         unused_texts = cleaned_locale_files(locale_texts).map do |locale_file|
-          locale_file.locale_texts.map do |text|
+          locale_file.locale_texts.map do |key, v|
             I18nChecker::Unused::Text.new(
-              text: text,
+              text: key,
               file: locale_file
             )
           end

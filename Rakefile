@@ -10,8 +10,8 @@ I18nChecker::RakeTask::LocaleCheck.new do |task|
 end
 
 I18nChecker::RakeTask::Clean.new do |task|
-  task.source_paths = FileList['spec/fixtures/haml/*', 'spec/fixtures/ruby/*']
-  task.locale_file_paths = FileList['spec/fixtures/locales/**']
+  task.source_paths = FileList['examples/unused/**']
+  task.locale_file_paths = FileList['examples/unused/locales/**']
 end
 
 task :default => :spec
