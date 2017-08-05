@@ -1,4 +1,4 @@
-describe I18nChecker::Detector::LocaleTextNotFound do
+describe I18nChecker::NotFound::Detector do
   describe '#detect' do
     let(:locale_texts) do
       I18nChecker::Locale::Texts.new([
@@ -15,7 +15,7 @@ describe I18nChecker::Detector::LocaleTextNotFound do
       ja = I18nChecker::Locale::File.load_yaml_file('spec/fixtures/locales/ja.yml')
       I18nChecker::Locale::Files.new([en, ja])
     end
-    let(:detector) { I18nChecker::Detector::LocaleTextNotFound.new(locale_files) }
+    let(:detector) { I18nChecker::NotFound::Detector.new(locale_files) }
     subject { detector.detect(locale_texts) }
     it 'should be return detected texts' do
       expect(subject.locale_texts.size).to eq 1

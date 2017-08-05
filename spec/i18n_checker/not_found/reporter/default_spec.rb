@@ -1,4 +1,4 @@
-describe I18nChecker::Reporter::DefaultReporter do
+describe I18nChecker::NotFound::Reporter::Default do
   describe '#report' do
     let(:logger) do
       logger = Logger.new(STDOUT)
@@ -7,16 +7,16 @@ describe I18nChecker::Reporter::DefaultReporter do
       }
       logger
     end
-    let(:reporter) { I18nChecker::Reporter::DefaultReporter.new(logger: logger) }
+    let(:reporter) { I18nChecker::NotFound::Reporter::Default.new(logger: logger) }
     let(:english_locale) do
       english_locale = {}
       english_locale['en'] = {}
       english_locale
     end
     let(:result) do
-      I18nChecker::Detector::DetectedResult.new(
+      I18nChecker::NotFound::Result.new(
         [
-          I18nChecker::Detector::TextResult.new(
+          I18nChecker::NotFound::Text.new(
             locale_text: I18nChecker::Locale::Text.new(
               file: 'example.haml',
               text: 'nested.title',
