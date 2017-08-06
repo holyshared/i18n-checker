@@ -15,6 +15,7 @@ require 'i18n_checker/unused/detector'
 require 'i18n_checker/unused/reporter'
 require 'i18n_checker/not_found/detector'
 require 'i18n_checker/not_found/reporter'
+require 'i18n_checker/cli/app'
 
 module I18nChecker
 end
