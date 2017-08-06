@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
   spec.metadata['yard.run'] = 'yri'
-  spec.executables   = ['i18n']
+  spec.executables = ['i18n']
   spec.add_dependency 'haml_parser', '~> 0.4'
   spec.add_dependency 'colorator', '~> 1.1.0'
   spec.add_dependency 'parser'

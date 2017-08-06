@@ -9,7 +9,7 @@ module I18nChecker
         @parser = I18nChecker::CLI::ArgParser.new
         @commands = {
           check: I18nChecker::Command::Check,
-          clean: I18nChecker::Command::Clean
+          clean: I18nChecker::Command::Clean,
         }
       end
 
@@ -20,9 +20,10 @@ module I18nChecker
 
       private
 
-      def run_command(result)
-        @commands[result.command].new(result.options).run()
-      end
+        def run_command(result)
+          command = @commands[result.command]
+          command.new(**result.options).run
+        end
     end
   end
 end
