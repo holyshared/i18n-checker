@@ -5,10 +5,10 @@ require 'i18n_checker/not_found/result'
 module I18nChecker
   module Command
     class Check
-      def initialize(locale_file_paths: [], source_paths: [], reporter:)
+      def initialize(locale_files: [], source_files: [], reporter:)
         @reporter = reporter
-        @locale_texts = I18nChecker::Locale.texts_of(source_paths)
-        @locale_files = I18nChecker::Locale.load_of(locale_file_paths)
+        @locale_texts = I18nChecker::Locale.texts_of(source_files)
+        @locale_files = I18nChecker::Locale.load_of(locale_files)
       end
 
       def run
