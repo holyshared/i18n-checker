@@ -32,8 +32,11 @@ module I18nChecker
         locale_files.each do |locale_file|
           lang = locale_file.lang.to_s
           next all_locale_texts[lang] = nil if locale_file.empty?
-          all_locale_texts[lang] = {} unless all_locale_texts.key?(lang)
-          all_locale_texts[lang].merge!(locale_file.locale_texts)
+          all_locale_texts[lang] = {} if !all_locale_texts.key?(lang) || all_locale_texts[lang] == nil
+          locale_file.locale_texts.each do |k, v|
+            next if all_locale_texts[lang].key?(k)
+            all_locale_texts[lang][k] = v
+          end
         end
         all_locale_texts
       end

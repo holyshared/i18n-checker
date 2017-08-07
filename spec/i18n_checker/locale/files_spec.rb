@@ -2,8 +2,8 @@ require 'yaml'
 
 describe I18nChecker::Locale::Files do
   describe '#to_h' do
-    let(:ja_locale_file) { 'spec/fixtures/locales/ja.yml' }
-    let(:en_locale_file) { 'spec/fixtures/locales/en.yml' }
+    let(:ja_locale_file) { 'spec/fixtures/locales/files/ja.yml' }
+    let(:en_locale_file) { 'spec/fixtures/locales/files/en.yml' }
     let(:locale_files) do
       I18nChecker::Locale::Files.new([
         I18nChecker::Locale::File.load_yaml_file(ja_locale_file),
