@@ -7,7 +7,7 @@ describe I18nChecker::Locale::Files do
     let(:locale_files) do
       I18nChecker::Locale::Files.new([
         I18nChecker::Locale::File.load_yaml_file(ja_locale_file),
-        I18nChecker::Locale::File.load_yaml_file(en_locale_file)
+        I18nChecker::Locale::File.load_yaml_file(en_locale_file),
       ])
     end
     subject { locale_files.to_h }

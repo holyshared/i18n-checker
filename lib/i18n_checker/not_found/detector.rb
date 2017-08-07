@@ -13,7 +13,7 @@ module I18nChecker
       private
 
         def detect_not_found(locale_text)
-          not_founds = @locale_texts.select do |lang, texts|
+          not_founds = @locale_texts.select do |_lang, texts|
             next false if texts.nil?
             !texts.key?(locale_text.text)
           end

@@ -8,11 +8,6 @@ describe I18nChecker::NotFound::Reporter::Default do
       logger
     end
     let(:reporter) { I18nChecker::NotFound::Reporter::Default.new(logger: logger) }
-    let(:english_locale) do
-      english_locale = {}
-      english_locale['en'] = {}
-      english_locale
-    end
     let(:result) do
       I18nChecker::NotFound::Result.new(
         [
@@ -23,6 +18,15 @@ describe I18nChecker::NotFound::Reporter::Default do
               text: 'nested.title',
               line: 1,
               column: 1
+            )
+          ),
+          I18nChecker::NotFound::Text.new(
+            lang: :en,
+            locale_text: I18nChecker::Locale::Text.new(
+              file: 'example.haml',
+              text: 'nested.description',
+              line: 1,
+              column: 2
             )
           ),
         ]
