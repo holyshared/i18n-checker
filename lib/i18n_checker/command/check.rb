@@ -11,7 +11,7 @@ module I18nChecker
         @locale_files = I18nChecker::Locale.load_of(locale_file_paths)
       end
 
-      def check
+      def run
         not_found_detector = I18nChecker::NotFound::Detector.new(@locale_files)
         not_found_result = @locale_texts.detect(not_found_detector)
         @reporter.report not_found_result
