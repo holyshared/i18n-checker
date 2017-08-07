@@ -41,7 +41,7 @@ module I18nChecker
             source_paths: source_paths,
             locale_file_paths: locale_file_paths
           )
-          commmand.check do |result|
+          commmand.run do |result|
             exit 1 unless result.empty?
           end
         end
