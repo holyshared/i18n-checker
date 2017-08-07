@@ -67,6 +67,10 @@ module I18nChecker
         self
       end
 
+      def empty?
+        locale_texts.empty?
+      end
+
       private
 
         def compact_of(values = {}, path = KeyPath.new)
