@@ -7,7 +7,7 @@ module I18nChecker
 
       include Enumerable
 
-      def_delegators :locale_files, :size, :each
+      def_delegators :locale_files, :size, :each, :map
 
       # Translation files for each language
       #
@@ -25,6 +25,20 @@ module I18nChecker
       def delete_if(&block)
         locale_files.delete_if(&block)
         self
+      end
+
+      def to_h
+        all_locale_texts = {}
+        locale_files.each do |locale_file|
+          lang = locale_file.lang.to_s
+          next all_locale_texts[lang] = nil if locale_file.empty?
+          all_locale_texts[lang] = {} if !all_locale_texts.key?(lang) || all_locale_texts[lang] == nil
+          locale_file.locale_texts.each do |k, v|
+            next if all_locale_texts[lang].key?(k)
+            all_locale_texts[lang][k] = v
+          end
+        end
+        all_locale_texts
       end
 
       private

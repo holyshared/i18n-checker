@@ -1,0 +1,5 @@
+---
+ja:
+  models:
+    user:
+      name: user name

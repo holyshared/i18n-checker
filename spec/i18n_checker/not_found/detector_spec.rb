@@ -11,9 +11,11 @@ describe I18nChecker::NotFound::Detector do
       ])
     end
     let(:locale_files) do
-      en = I18nChecker::Locale::File.load_yaml_file('spec/fixtures/locales/en.yml')
-      ja = I18nChecker::Locale::File.load_yaml_file('spec/fixtures/locales/ja.yml')
-      I18nChecker::Locale::Files.new([en, ja])
+      en = I18nChecker::Locale::File.load_yaml_file('spec/fixtures/locales/not_found/en.yml')
+      ja = I18nChecker::Locale::File.load_yaml_file('spec/fixtures/locales/not_found/ja.yml')
+      models_en = I18nChecker::Locale::File.load_yaml_file('spec/fixtures/locales/not_found/models.en.yml')
+      models_ja = I18nChecker::Locale::File.load_yaml_file('spec/fixtures/locales/not_found/models.ja.yml')
+      I18nChecker::Locale::Files.new([en, ja, models_en, models_ja])
     end
     let(:detector) { I18nChecker::NotFound::Detector.new(locale_files) }
     subject { detector.detect(locale_texts) }

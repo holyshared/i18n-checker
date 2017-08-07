@@ -2,7 +2,7 @@ module I18nChecker
   module NotFound
     class Detector
       def initialize(locale_files)
-        @locale_files = locale_files
+        @locale_texts = locale_files.to_h
       end
 
       def detect(locale_texts)
@@ -13,12 +13,14 @@ module I18nChecker
       private
 
         def detect_not_found(locale_text)
-          locale_files = @locale_files.dup
-          locale_files.delete_if { |locale_file| locale_file.include?(locale_text) }
-          locale_files.map do |locale_file|
+          not_founds = @locale_texts.select do |lang, texts|
+            next false if texts.nil?
+            !texts.key?(locale_text.text)
+          end
+          not_founds.keys.map do |not_found_lang|
             Text.new(
-              locale_text: locale_text,
-              locale_file: locale_file
+              lang: not_found_lang.to_sym,
+              locale_text: locale_text
             )
           end
         end
