@@ -95,12 +95,8 @@ module I18nChecker
             last_key = paths.last
             paths.pop
             paths.each do |p|
-              if result.key?(p)
-                dest = result[p]
-              else
-                result[p] = {}
-                dest = result[p]
-              end
+              result[p] = {} unless result.key?(p)
+              dest = result[p]
             end
             dest[last_key] = value
           end

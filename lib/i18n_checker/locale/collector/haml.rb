@@ -46,9 +46,16 @@ module I18nChecker
             translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
             return unless translate_script
 
-            locale_text = translate_script[1]
+            locale_text_key = translate_script[1]
             file_cache = file_caches.read(script_node.filename)
-            column = file_cache[script_node.lineno].start_of(locale_text)
+            column = file_cache[script_node.lineno].start_of(locale_text_key)
+
+            locale_text = if locale_text_key =~ /^\.(.+)/
+                            action_view = action_view_name_from_script(script_node)
+                            "#{action_view}#{locale_text_key}"
+                          else
+                            locale_text_key
+                          end
 
             I18nChecker::Locale::Text.new(
               file: script_node.filename,
@@ -56,6 +63,15 @@ module I18nChecker
               column: column,
               text: locale_text
             )
+          end
+
+          # Translation key for lazy lookup
+          # @see http://guides.rubyonrails.org/i18n.html#lazy-lookup
+          def action_view_name_from_script(script_node)
+            filename = script_node.filename
+            filename.gsub!(%r{(.+)/app/views/}, '')
+            filename.gsub!(/\.html\.haml\z/, '')
+            filename.split('/').join('.')
           end
       end
     end
