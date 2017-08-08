@@ -19,5 +19,14 @@ describe I18nChecker::Locale::Collector::Haml do
         expect(subject.line).to be 10
       end
     end
+    context 'when has lazy lookup' do
+      let(:haml_file) { 'spec/fixtures/haml/rails/app/views/books/index.html.haml' }
+      subject { collector.collect(haml_file).first }
+      it 'should be return locale text' do
+        expect(subject.file).to eq(haml_file)
+        expect(subject.text).to eq('books.index.title')
+        expect(subject.line).to be 10
+      end
+    end
   end
 end
