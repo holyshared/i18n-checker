@@ -22,9 +22,9 @@ describe I18nChecker::Unused::Reporter::Default do
         [
           I18nChecker::Unused::Text.new(
             text: 'nested.title',
-            file: I18nChecker::Locale::File.new('config/locale/en.yml', english_locale)
+            file: I18nChecker::Locale::File.new('config/locale/en.yml', english_locale),
           ),
-        ]
+        ],
       )
     end
     it 'should be display result' do

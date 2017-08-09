@@ -13,7 +13,7 @@ module I18nChecker
           locale_file.locale_texts.map do |key, _v|
             I18nChecker::Unused::Text.new(
               text: key,
-              file: locale_file
+              file: locale_file,
             )
           end
         end

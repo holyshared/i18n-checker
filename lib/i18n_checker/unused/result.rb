@@ -29,8 +29,8 @@ module I18nChecker
       # @return [Array<I18nChecker::Locale::File>]
       def apply(target_locale_files)
         locale_files = target_locale_files.
-                       group_by(&:file_name).
-                       map { |k, v| [k, v.first] }
+                         group_by(&:file_name).
+                         map { |k, v| [k, v.first] }
 
         cleanup_locale_files = locale_files.map do |file_name, locale_file|
           return locale_file unless @locale_files.key?(file_name)

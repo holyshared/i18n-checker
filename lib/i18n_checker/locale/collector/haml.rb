@@ -61,7 +61,7 @@ module I18nChecker
               file: script_node.filename,
               line: script_node.lineno,
               column: column,
-              text: locale_text
+              text: locale_text,
             )
           end
 
