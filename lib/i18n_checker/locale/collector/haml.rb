@@ -71,11 +71,13 @@ module I18nChecker
             file_cache = file_caches.read(script_node.filename)
             script_lines = script_node.script.split('\n')
             script_lines.each_with_index do |script_line, i|
+              offset_at = 0
               translate_scripts = script_line.scan(/t\('[^']+'\)/)
               map_results = translate_scripts.map do |script|
                 line = script_node.lineno + i
                 text_key = script.gsub!(/t\('|'\)/, '')
-                column = file_cache[line].start_of(text_key)
+                column = file_cache[line].start_of(text_key, offset_at)
+                offset_at = column + 1
                 [
                   text_key,
                   line,

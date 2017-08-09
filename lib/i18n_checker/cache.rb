@@ -111,8 +111,8 @@ module I18nChecker
         content[range.first - 1, range.last]
       end
 
-      def start_of(text)
-        content.index(text)
+      def start_of(text, at = 0)
+        content.index(text, at)
       end
 
       def to_s
