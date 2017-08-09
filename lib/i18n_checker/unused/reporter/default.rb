@@ -1,6 +1,4 @@
-require 'i18n_checker/unused/result'
-require 'i18n_checker/unused/result'
-require 'i18n_checker/unused/detector'
+require 'colorator'
 require 'i18n_checker/unused/reporter/base'
 
 module I18nChecker

@@ -50,7 +50,7 @@ module I18nChecker
         current_locale_texts.delete_if { |locale_text| registry.key?(locale_text) }
 
         remain_texts = {}
-        remain_texts[@lang] = current_locale_texts
+        remain_texts[@lang] = tree_of(current_locale_texts)
 
         self.class.new(file_name, remain_texts)
       end
@@ -95,8 +95,8 @@ module I18nChecker
             last_key = paths.pop
             dest = result
             paths.each do |p|
-              result[p] = {} unless result.key?(p)
-              dest = result[p]
+              dest[p] = {} unless dest.key?(p)
+              dest = dest[p]
             end
             dest[last_key] = value
           end
