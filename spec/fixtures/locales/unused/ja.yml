@@ -3,3 +3,7 @@ ja:
   nested:
     title: title
     description: description
+  nested1:
+    nested2:
+      title: title
+      description: description

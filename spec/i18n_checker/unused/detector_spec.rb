@@ -18,7 +18,7 @@ describe I18nChecker::Unused::Detector do
     let(:detector) { I18nChecker::Unused::Detector.new(locale_files) }
     subject { detector.detect(locale_texts) }
     it 'should be return detected texts' do
-      expect(subject.unused_texts.size).to eq 2
+      expect(subject.unused_texts.size).to eq 4
     end
   end
 end

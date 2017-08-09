@@ -17,6 +17,10 @@ describe I18nChecker::Unused::Result do
             text: 'nested.title',
             file: locale_file,
           ),
+          I18nChecker::Unused::Text.new(
+            text: 'nested1.nested2.title',
+            file: locale_file,
+          ),
         ],
       )
     end
@@ -27,6 +31,8 @@ describe I18nChecker::Unused::Result do
     it 'should be remove unused texts' do
       expect(subject['ja']['nested'].key?('title')).to eq(false)
       expect(subject['ja']['nested'].key?('description')).to eq(true)
+      expect(subject['ja']['nested1']['nested2'].key?('title')).to eq(false)
+      expect(subject['ja']['nested1']['nested2'].key?('description')).to eq(true)
     end
   end
 end
