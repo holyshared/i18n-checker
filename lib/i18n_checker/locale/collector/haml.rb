@@ -43,26 +43,48 @@ module I18nChecker
           end
 
           def locale_text_from_script(script_node)
-            translate_script = script_node.script.match(/^t\(\'+(.+)\'+\)$/)
-            return unless translate_script
+            return if script_node.script == '""'
+            translate_scripts = translate_scripts_from_script(script_node)
+            return if translate_scripts.empty?
 
-            locale_text_key = translate_script[1]
+            translate_scripts.map do |script_params|
+              (text_key, line, column) = script_params
+
+              locale_text = if text_key =~ /^\.(.+)/
+                              action_view = action_view_name_from_script(script_node)
+                              "#{action_view}#{text_key}"
+                            else
+                              text_key
+                            end
+
+              I18nChecker::Locale::Text.new(
+                file: script_node.filename,
+                line: line,
+                column: column,
+                text: locale_text,
+              )
+            end
+          end
+
+          def translate_scripts_from_script(script_node)
+            results = []
             file_cache = file_caches.read(script_node.filename)
-            column = file_cache[script_node.lineno].start_of(locale_text_key)
-
-            locale_text = if locale_text_key =~ /^\.(.+)/
-                            action_view = action_view_name_from_script(script_node)
-                            "#{action_view}#{locale_text_key}"
-                          else
-                            locale_text_key
-                          end
-
-            I18nChecker::Locale::Text.new(
-              file: script_node.filename,
-              line: script_node.lineno,
-              column: column,
-              text: locale_text,
-            )
+            script_lines = script_node.script.split('\n')
+            script_lines.each_with_index do |script_line, i|
+              translate_scripts = script_line.scan(/t\('[^']+'\)/)
+              map_results = translate_scripts.map do |script|
+                line = script_node.lineno + i
+                text_key = script.gsub!(/t\('|'\)/, '')
+                column = file_cache[line].start_of(text_key)
+                [
+                  text_key,
+                  line,
+                  column
+                ]
+              end
+              results.concat(map_results)
+            end
+            results
           end
 
           # Translation key for lazy lookup
