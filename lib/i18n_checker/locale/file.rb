@@ -92,8 +92,8 @@ module I18nChecker
           values.each do |path, value|
             dest = nil
             paths = path.split('.')
-            last_key = paths.last
-            paths.pop
+            last_key = paths.pop
+            dest = result
             paths.each do |p|
               result[p] = {} unless result.key?(p)
               dest = result[p]
