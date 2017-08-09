@@ -83,5 +83,17 @@ describe I18nChecker::Locale::Collector::Haml do
         expect(subject[0].column).to be 7
       end
     end
+
+    context 'when has embedded text key' do
+      let(:haml_file) { 'spec/fixtures/haml/embedded.haml' }
+      subject { collector.collect(haml_file) }
+      it 'should be return locale text' do
+        expect(subject.size).to eq(1)
+        expect(subject[0].file).to eq(haml_file)
+        expect(subject[0].text).to eq('user.index.title')
+        expect(subject[0].line).to be 1
+        expect(subject[0].column).to be 11
+      end
+    end
   end
 end

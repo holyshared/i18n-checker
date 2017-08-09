@@ -36,29 +36,43 @@ module I18nChecker
           end
 
           def collect_locale_text(ast)
+            return locale_text_from_text(ast) if ast.is_a?(HamlParser::Ast::Text)
             return locale_text_from_script(ast) if ast.is_a?(HamlParser::Ast::Script)
             return unless ast.respond_to?(:oneline_child)
-            return unless ast.oneline_child.is_a?(HamlParser::Ast::Script)
-            locale_text_from_script(ast.oneline_child)
+            if ast.oneline_child.is_a?(HamlParser::Ast::Text)
+              locale_text_from_text(ast.oneline_child)
+            elsif ast.oneline_child.is_a?(HamlParser::Ast::Script)
+              locale_text_from_script(ast.oneline_child)
+            end
+          end
+
+          def locale_text_from_text(text_node)
+            return if text_node.text == '""'
+            translate_scripts = translate_scripts_from_node(text_node)
+            return if translate_scripts.empty?
+            create_node_result(text_node, translate_scripts)
           end
 
           def locale_text_from_script(script_node)
             return if script_node.script == '""'
-            translate_scripts = translate_scripts_from_script(script_node)
+            translate_scripts = translate_scripts_from_node(script_node)
             return if translate_scripts.empty?
+            create_node_result(script_node, translate_scripts)
+          end
 
+          def create_node_result(ast_node, translate_scripts)
             translate_scripts.map do |script_params|
               (text_key, line, column) = script_params
 
               locale_text = if text_key =~ /^\.(.+)/
-                              action_view = action_view_name_from_script(script_node)
+                              action_view = action_view_name_from_script(ast_node)
                               "#{action_view}#{text_key}"
                             else
                               text_key
                             end
 
               I18nChecker::Locale::Text.new(
-                file: script_node.filename,
+                file: ast_node.filename,
                 line: line,
                 column: column,
                 text: locale_text,
@@ -66,15 +80,21 @@ module I18nChecker
             end
           end
 
-          def translate_scripts_from_script(script_node)
+          def translate_scripts_from_node(ast_node)
             results = []
-            file_cache = file_caches.read(script_node.filename)
-            script_lines = script_node.script.split("\n")
-            script_lines.each_with_index do |script_line, i|
+            file_cache = file_caches.read(ast_node.filename)
+
+            node_lines = if ast_node.is_a?(HamlParser::Ast::Text)
+              ast_node.text.split("\n")
+            elsif ast_node.is_a?(HamlParser::Ast::Script)
+              ast_node.script.split("\n")
+            end
+
+            node_lines.each_with_index do |node_line, i|
               offset_at = 0
-              translate_scripts = script_line.scan(/t\('[^']+'\)/)
+              translate_scripts = node_line.scan(/t\('[^']+'\)/)
               map_results = translate_scripts.map do |script|
-                line = script_node.lineno + i
+                line = ast_node.lineno + i
                 text_key = script.gsub!(/t\('|'\)/, '')
                 column = file_cache[line].start_of(text_key, offset_at)
                 offset_at = column + 1
