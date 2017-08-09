@@ -68,7 +68,7 @@ module I18nChecker
           # Translation key for lazy lookup
           # @see http://guides.rubyonrails.org/i18n.html#lazy-lookup
           def action_view_name_from_script(script_node)
-            filename = script_node.filename
+            filename = script_node.filename.dup
             filename.gsub!(%r{(.+)/app/views/}, '')
             filename.gsub!(/\.html\.haml\z/, '')
             filename.split('/').join('.')

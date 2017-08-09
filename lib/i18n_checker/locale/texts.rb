@@ -43,6 +43,10 @@ module I18nChecker
         @texts == other.to_a
       end
 
+      def [](key)
+        @texts[key]
+      end
+
       def detect(detector)
         detector.detect(texts)
       end
