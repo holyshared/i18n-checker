@@ -69,7 +69,7 @@ module I18nChecker
           def translate_scripts_from_script(script_node)
             results = []
             file_cache = file_caches.read(script_node.filename)
-            script_lines = script_node.script.split('\n')
+            script_lines = script_node.script.split("\n")
             script_lines.each_with_index do |script_line, i|
               offset_at = 0
               translate_scripts = script_line.scan(/t\('[^']+'\)/)
