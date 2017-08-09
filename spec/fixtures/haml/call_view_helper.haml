@@ -1,0 +1,11 @@
+!!! 5
+%html
+  %head
+    %title= ""
+    %meta{ :content => "", :name => "description" }
+    %meta{ :content => "", :name => "author" }
+  %body
+    %ul
+      %li= active_link_to t('user.show.link_title'), users_path,
+        class: 'users-menu'
+      %li= foo t('user.show.link_label'), t('user.show.link_detail')
