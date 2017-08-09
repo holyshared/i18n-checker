@@ -39,7 +39,7 @@ module I18nChecker
           command = I18nChecker::Command::Clean.new(
             reporter: reporter,
             source_paths: source_paths,
-            locale_file_paths: locale_file_paths
+            locale_file_paths: locale_file_paths,
           )
           command.run do |result|
             exit 1 unless result.empty?

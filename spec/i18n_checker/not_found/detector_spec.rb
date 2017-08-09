@@ -6,7 +6,7 @@ describe I18nChecker::NotFound::Detector do
           file: 'example.haml',
           text: 'nested.title',
           line: 1,
-          column: 1
+          column: 1,
         ),
       ])
     end

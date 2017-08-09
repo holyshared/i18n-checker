@@ -19,7 +19,7 @@ module I18nChecker
           file: file,
           line: arg_node.loc.line,
           column: arg_node.loc.column + 1,
-          text: arg_node.children.first
+          text: arg_node.children.first,
         )
         super(node)
       end
