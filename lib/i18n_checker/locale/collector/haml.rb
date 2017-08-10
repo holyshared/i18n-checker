@@ -2,12 +2,14 @@ require 'haml_parser'
 require 'haml_parser/parser'
 require 'i18n_checker/collectible'
 require 'i18n_checker/locale/texts'
+require 'i18n_checker/locale/file_helper'
 
 module I18nChecker
   module Locale
     module Collector
       class Haml
         include I18nChecker::Collectible
+        include I18nChecker::Locale::FileHelper
 
         attr_reader :file_caches
 
@@ -65,7 +67,7 @@ module I18nChecker
               (text_key, line, column) = script_params
 
               locale_text = if text_key =~ /^\.(.+)/
-                              action_view = action_view_name_from_script(ast_node)
+                              action_view = action_view_name_of(ast_node.filename.dup)
                               "#{action_view}#{text_key}"
                             else
                               text_key
@@ -107,15 +109,6 @@ module I18nChecker
               results.concat(map_results)
             end
             results
-          end
-
-          # Translation key for lazy lookup
-          # @see http://guides.rubyonrails.org/i18n.html#lazy-lookup
-          def action_view_name_from_script(script_node)
-            filename = script_node.filename.dup
-            filename.gsub!(%r{(.+)/app/views/}, '')
-            filename.gsub!(/\.html\.haml\z/, '')
-            filename.split('/').join('.')
           end
       end
     end
