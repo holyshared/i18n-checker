@@ -87,9 +87,9 @@ module I18nChecker
             file_cache = file_caches.read(ast_node.filename)
 
             node_lines = if ast_node.is_a?(HamlParser::Ast::Text)
-              ast_node.text.split("\n")
-            elsif ast_node.is_a?(HamlParser::Ast::Script)
-              ast_node.script.split("\n")
+                           ast_node.text.split("\n")
+                         elsif ast_node.is_a?(HamlParser::Ast::Script)
+                           ast_node.script.split("\n")
             end
 
             node_lines.each_with_index do |node_line, i|
@@ -103,7 +103,7 @@ module I18nChecker
                 [
                   text_key,
                   line,
-                  column
+                  column,
                 ]
               end
               results.concat(map_results)
