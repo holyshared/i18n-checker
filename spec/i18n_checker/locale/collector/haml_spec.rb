@@ -95,5 +95,22 @@ describe I18nChecker::Locale::Collector::Haml do
         expect(subject[0].column).to be 11
       end
     end
+
+    context 'when has variables' do
+      let(:haml_file) { 'spec/fixtures/haml/variables.haml' }
+      subject { collector.collect(haml_file) }
+      it 'should be return locale text' do
+        expect(subject.size).to eq(2)
+        expect(subject[0].file).to eq(haml_file)
+        expect(subject[0].text).to eq('user.books.index.year')
+        expect(subject[0].line).to be 9
+        expect(subject[0].column).to be 24
+
+        expect(subject[1].file).to eq(haml_file)
+        expect(subject[1].text).to eq('user.books.index.hour')
+        expect(subject[1].line).to be 9
+        expect(subject[1].column).to be 52
+      end
+    end
   end
 end

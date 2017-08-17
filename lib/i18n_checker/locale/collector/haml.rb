@@ -39,11 +39,11 @@ module I18nChecker
 
           def collect_locale_text(ast)
             return locale_text_from_text(ast) if ast.is_a?(HamlParser::Ast::Text)
-            return locale_text_from_script(ast) if ast.is_a?(HamlParser::Ast::Script)
+            return locale_text_from_script(ast) if script_node?(ast)
             return unless ast.respond_to?(:oneline_child)
             if ast.oneline_child.is_a?(HamlParser::Ast::Text)
               locale_text_from_text(ast.oneline_child)
-            elsif ast.oneline_child.is_a?(HamlParser::Ast::Script)
+            elsif script_node?(ast.oneline_child)
               locale_text_from_script(ast.oneline_child)
             end
           end
@@ -88,7 +88,7 @@ module I18nChecker
 
             node_lines = if ast_node.is_a?(HamlParser::Ast::Text)
                            ast_node.text.split("\n")
-                         elsif ast_node.is_a?(HamlParser::Ast::Script)
+                         elsif script_node?(ast_node)
                            ast_node.script.split("\n")
             end
 
@@ -110,7 +110,11 @@ module I18nChecker
             end
             results
           end
-      end
+
+          def script_node?(ast_node)
+            ast_node.is_a?(HamlParser::Ast::Script) || ast_node.is_a?(HamlParser::Ast::SilentScript)
+          end
+        end
     end
   end
 end
