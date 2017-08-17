@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    i18n_checker (0.8.5)
+    i18n_checker (0.8.6)
       colorator (~> 1.1.0)
       haml_parser (~> 0.4)
       parser
