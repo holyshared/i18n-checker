@@ -94,7 +94,7 @@ module I18nChecker
 
             node_lines.each_with_index do |node_line, i|
               offset_at = 0
-              translate_scripts = node_line.scan(/t\(('[^']+'|"[^"]+")\)/).map(&:first)
+              translate_scripts = node_line.scan(/t\s?\(?('[^']+'|"[^"]+")\)?/).map(&:first)
               map_results = translate_scripts.map do |script|
                 line = ast_node.lineno + i
                 text_key = script.gsub!(/'|"/, '')

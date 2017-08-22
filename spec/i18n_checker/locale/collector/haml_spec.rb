@@ -112,5 +112,22 @@ describe I18nChecker::Locale::Collector::Haml do
         expect(subject[1].column).to be 52
       end
     end
+
+    context 'when has short syntax' do
+      let(:haml_file) { 'spec/fixtures/haml/short_syntax.haml' }
+      subject { collector.collect(haml_file) }
+      it 'should be return locale text' do
+        expect(subject.size).to eq(2)
+        expect(subject[0].file).to eq(haml_file)
+        expect(subject[0].text).to eq('user.books.index.title')
+        expect(subject[0].line).to be 9
+        expect(subject[0].column).to be 14
+
+        expect(subject[1].file).to eq(haml_file)
+        expect(subject[1].text).to eq('user.books.index.message')
+        expect(subject[1].line).to be 10
+        expect(subject[1].column).to be 13
+      end
+    end
   end
 end
