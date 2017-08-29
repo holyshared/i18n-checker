@@ -15,6 +15,11 @@ I18nChecker::RakeTask::Clean.new do |task|
   task.locale_file_paths = FileList['examples/unused/locales/**']
 end
 
+I18nChecker::RakeTask::UnusedCheck.new do |task|
+  task.source_paths = FileList['examples/unused/**']
+  task.locale_file_paths = FileList['examples/unused/locales/**']
+end
+
 YARD::Rake::YardocTask.new do |t|
   t.files = ['lib/**/*.rb']
 end
