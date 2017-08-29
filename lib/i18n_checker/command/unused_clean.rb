@@ -2,7 +2,7 @@ require 'i18n_checker/unused/detector'
 
 module I18nChecker
   module Command
-    class Clean
+    class UnusedClean
       def initialize(locale_file_paths: [], source_paths: [], reporter:)
         @reporter = reporter
         @locale_texts = I18nChecker::Locale.texts_of(source_paths)

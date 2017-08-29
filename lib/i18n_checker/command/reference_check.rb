@@ -4,7 +4,7 @@ require 'i18n_checker/not_found/result'
 
 module I18nChecker
   module Command
-    class Check
+    class ReferenceCheck
       def initialize(locale_file_paths: [], source_paths: [], reporter:)
         @reporter = reporter
         @locale_texts = I18nChecker::Locale.texts_of(source_paths)
