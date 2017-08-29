@@ -1,3 +1,3 @@
 module I18nChecker
-  VERSION = '0.8.8'.freeze
+  VERSION = '0.9.0'.freeze
 end
