@@ -20,12 +20,12 @@ Add the following tasks to your **Rakefile**.
 ```ruby
 require 'i18n_checker/rake_task'
 
-I18nChecker::RakeTask::Check.new do |task|
+I18nChecker::RakeTask::ReferenceCheck.new do |task|
   task.source_paths = FileList['app/models/*', 'app/views/*'] # haml templates, ruby sources
   task.locale_file_paths = FileList['config/locales/*'] # locale file paths
 end
 
-I18nChecker::RakeTask::Clean do |task|
+I18nChecker::RakeTask::UnusedCheck do |task|
   task.source_paths = FileList['app/models/*', 'app/views/*'] # haml templates, ruby sources
   task.locale_file_paths = FileList['config/locales/*'] # locale file paths
 end
@@ -34,8 +34,8 @@ end
 After that we just execute the task.
 
 ```shell
-bundle exec rake locale_check
-bundle exec rake locale_clean
+bundle exec rake locale_reference_check
+bundle exec rake locale_unused_check
 ```
 
 ## Check translation of translated text
@@ -46,7 +46,7 @@ It is useful for detecting text that is not in the translation file of a particu
 ```ruby
 require 'i18n_checker/rake_task'
 
-I18nChecker::RakeTask::Check.new do |task|
+I18nChecker::RakeTask::ReferenceCheck.new do |task|
   task.source_paths = FileList['app/models/*', 'app/views/*'] # haml templates, ruby sources
   task.locale_file_paths = FileList['config/locales/*'] # locale file paths
 end
@@ -55,7 +55,7 @@ end
 After that we just execute the task.
 
 ```shell
-bundle exec rake locale_check
+bundle exec rake locale_reference_check
 ```
 
 ## Delete unused translated text
@@ -66,7 +66,7 @@ Since you can delete translated text that you do not use safely, you can reduce 
 ```ruby
 require 'i18n_checker/rake_task'
 
-I18nChecker::RakeTask::Clean do |task|
+I18nChecker::RakeTask::UnusedClean do |task|
   task.source_paths = FileList['app/models/*', 'app/views/*'] # haml templates, ruby sources
   task.locale_file_paths = FileList['config/locales/*'] # locale file paths
 end
@@ -75,7 +75,7 @@ end
 After that we just execute the task.
 
 ```shell
-bundle exec rake locale_clean
+bundle exec rake locale_unused_clean
 ```
 
 ## Run the test
