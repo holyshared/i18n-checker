@@ -4,18 +4,18 @@ require 'i18n_checker/cache'
 require 'i18n_checker/locale'
 require 'i18n_checker/not_found/reporter/base'
 require 'i18n_checker/not_found/reporter/default'
-require 'i18n_checker/command/check'
+require 'i18n_checker/command/reference_check'
 
 module I18nChecker
   module RakeTask
-    class Check < ::Rake::TaskLib
+    class ReferenceCheck < ::Rake::TaskLib
       attr_accessor :name
       attr_accessor :reporter
       attr_accessor :source_paths
       attr_accessor :locale_file_paths
       attr_accessor :logger
 
-      def initialize(name = :locale_check)
+      def initialize(name = :locale_reference_check)
         @name = name
         @source_paths = FileList['app/views/*', 'app/controllers/*', 'app/jobs/*', 'app/models/*', 'app/helpers/*']
         @locale_file_paths = FileList['config/locales/*']
@@ -36,7 +36,7 @@ module I18nChecker
         end
 
         def run_task
-          commmand = I18nChecker::Command::Check.new(
+          commmand = I18nChecker::Command::ReferenceCheck.new(
             reporter: reporter,
             source_paths: source_paths,
             locale_file_paths: locale_file_paths,

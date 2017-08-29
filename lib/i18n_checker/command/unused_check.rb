@@ -2,7 +2,7 @@ require 'i18n_checker/unused/detector'
 
 module I18nChecker
   module Command
-    class Clean
+    class UnusedCheck
       def initialize(locale_file_paths: [], source_paths: [], reporter:)
         @reporter = reporter
         @locale_texts = I18nChecker::Locale.texts_of(source_paths)
@@ -13,7 +13,6 @@ module I18nChecker
       def run
         unused_result = @locale_texts.detect(@unused_detector)
         @reporter.report unused_result
-        unused_result.apply(@locale_files)
         yield unused_result if block_given?
       end
     end
