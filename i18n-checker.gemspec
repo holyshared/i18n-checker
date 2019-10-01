@@ -32,5 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'coveralls'
   spec.add_development_dependency 'onkcop'
   spec.add_development_dependency 'rspec-temp_dir'
-  spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'yard', '>= 0.9.20'
 end
